@@ -3,16 +3,16 @@ CFLAGS+=-Wall $(shell pkg-config --cflags libdrm)
 
 CXXFLAGS=-std=c++11 $(CFLAGS)
 
-GLES-DEMO-OBJECTS = main.o gles-renderer.o util.o egl-context.o x11-egl.o
+EGL-DEMO-OBJECTS = main.o gles-renderer.o util.o egl-context.o x11-egl.o
 GTK-DEMO-OBJECTS = gtk-gl-main.o gles-renderer.o util.o
 
 LDLIBS = -lEGL -lGLESv2 -lgbm -ldrm -lX11
 GTKLIBS = $(shell pkg-config --libs gtk+-3.0) -lGLESv2
 
-all : gles-demo gtk-demo
+all : egl-demo gtk-demo
 
-gles-demo : $(GLES-DEMO-OBJECTS)
-	g++ -o $@ $(GLES-DEMO-OBJECTS) $(LDLIBS)
+egl-demo : $(EGL-DEMO-OBJECTS)
+	g++ -o $@ $(EGL-DEMO-OBJECTS) $(LDLIBS)
 
 $(GTK-DEMO-OBJECTS) : CFLAGS += $(shell pkg-config --cflags gtk+-3.0)
 gtk-demo : $(GTK-DEMO-OBJECTS)
@@ -20,7 +20,7 @@ gtk-demo : $(GTK-DEMO-OBJECTS)
 
 clean :
 	rm -f *.o
-	rm -f gles-demo gtk-demo
+	rm -f egl-demo gtk-demo
 
 %.o: %.c dummy
 	$(CC) $(CFLAGS) -c $<
