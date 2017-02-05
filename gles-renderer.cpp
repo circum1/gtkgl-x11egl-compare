@@ -289,8 +289,8 @@ void renderFrame(void) {
         printf("Max compute time: %d\n", (int)maxtime);
 
         if (fullcounter>100) {
-            printf("Full avg FPS: %2.1f\n", 1.0*(fullcounter-100)/(now-firstFrame)*1000000);
-            printf("1 sec FPS: %2.1f\n", 1.0*(counter)/(now-lastFrame)*1000000);
+            printf("Full avg FPS: %2.2f\n", 1.0*(fullcounter-100)/(now-firstFrame)*1000000);
+            printf("1 sec FPS: %2.2f\n", 1.0*(counter)/(now-lastFrame)*1000000);
             printf("Min frame time: %d\n", (int)minFrame);
             printf("Max frame time: %d\n\n", (int)maxFrame);
         }

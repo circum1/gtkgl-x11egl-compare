@@ -13,8 +13,6 @@
 class X11EglData : public EGLData {
     int initGl(const char *dpyName);
 public:
-    // TODO this is public for event handling;
-    // should be incorparated into the responsibilities of this class
     Display *x_dpy;
     Window win;
     static X11EglData createEglContextForX11();
